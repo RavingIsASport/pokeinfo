@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  background-color: rgb(204, 119, 0);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+#title {
+  font-size: 32px;
+  text-decoration: none;
+  color: black;
+}
+#title:hover {
+  color: red;
+}
+
+#dataDiv {
+  display: flex;
+  justify-content: start;
+  margin: 3%;
+  gap: 2%;
+}
