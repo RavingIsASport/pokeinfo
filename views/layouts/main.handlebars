@@ -7,18 +7,21 @@
   </head>
   <body>
     <!-- Title -->
-    <a id="title" href="/">Poke Info</a>
-    <!-- Main container -->
-    <div id="dataDiv">
+    <div id="titleBox">
+      <a id="title" href="/">Poke Info</a>
+    </div>
+    <!-- search container -->
+    <div id="dataSearch">
       <form id="myForm">
         <label for="search"></label>
         <input
           type="text"
           id="search"
+          results="5"
           name="pokemonName"
           placeholder="Enter Pokemon"
         />
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search" id="submit" />
       </form>
     </div>
     {{{body}}}

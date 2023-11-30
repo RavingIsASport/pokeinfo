@@ -1,6 +1,16 @@
-<h1>{{pokemon.name}}</h1>
-<img src="{{pokemon.sprites.front_default}}" alt="{{pokemon.name}}" />
-<p>Height: {{pokeH}} cm</p>
-<p>Weight: {{pokeW}} kg</p>
-<h2>Abilities</h2>
-{{#each pokemon.abilities}}<p>{{this.ability.name}}</p>{{/each}}
+<div id="infoCon">
+  <div id="imgCard">
+    <img
+      id="pokeImg"
+      src="{{pokemon.sprites.front_default}}"
+      alt="{{pokemon.name}}"
+    />
+    <h1 id="pokeName">{{pokemon.name}}</h1>
+  </div>
+  <div id="dataCard">
+    <p>Height: {{pokeH}} cm</p>
+    <p>Weight: {{pokeW}} kg</p>
+    <h2>Abilities</h2>
+    {{#each pokemon.abilities}}<p>{{this.ability.name}}</p>{{/each}}
+  </div>
+</div>

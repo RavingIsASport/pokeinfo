@@ -1,6 +1,13 @@
 * {
   margin: 0;
   padding: 0;
+  background-color: rgb(255, 209, 122);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 60px white inset !important;
 }
 nav {
   background-color: rgb(204, 119, 0);
@@ -8,18 +15,62 @@ nav {
   display: flex;
   justify-content: center;
 }
+#titleBox,
 #title {
   font-size: 32px;
   text-decoration: none;
   color: black;
+  display: flex;
+  justify-content: end;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 5px;
 }
 #title:hover {
   color: red;
 }
 
-#dataDiv {
+#dataSearch {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   margin: 3%;
   gap: 2%;
+}
+#submit {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 6px;
+  border-radius: 10%;
+}
+#search,
+#search:focus {
+  padding: 2px;
+  border-width: 0px 0px 2px 0px;
+  outline: none;
+  font-size: 2rem;
+  background-color: transparent;
+}
+/* main pokemon section */
+#infoCon {
+  display: flex;
+  justify-content: center;
+  gap: 4em;
+}
+#imgCard {
+  display: flex;
+  flex-direction: column;
+
+  padding: 3rem 2rem 3rem 2rem;
+  border-radius: 10%;
+}
+#pokeName,
+#pokeName::first-letter {
+  font-size: 40px;
+  text-transform: capitalize;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+#dataCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
