@@ -15,6 +15,7 @@ nav {
   display: flex;
   justify-content: center;
 }
+
 #titleBox,
 #title {
   font-size: 32px;

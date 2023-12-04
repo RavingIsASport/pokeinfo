@@ -26,7 +26,9 @@ app.get("/:name", async (req, res) => {
   const { name } = req.params;
   //   fetch pokemon
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`
+    );
     const data = await response.json();
     const pokeHeight = data.height * 10;
     const pokeWeight = data.weight % 1000;
