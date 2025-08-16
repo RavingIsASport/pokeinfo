@@ -92,6 +92,34 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 600);
     });
   }
+
+  // Evolution navigation functionality
+  const evolutionPokemon = document.querySelectorAll(".evolution-pokemon");
+  evolutionPokemon.forEach((pokemon) => {
+    pokemon.addEventListener("click", function () {
+      const pokemonName =
+        this.querySelector(".evolution-name").textContent.trim();
+      if (pokemonName && !this.classList.contains("current-pokemon")) {
+        window.location.href = `/${pokemonName}`;
+      }
+    });
+
+    // Add hover effect
+    pokemon.addEventListener("mouseenter", function () {
+      if (!this.classList.contains("current-pokemon")) {
+        this.style.background =
+          "linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%)";
+        this.style.borderColor = "#2196f3";
+      }
+    });
+
+    pokemon.addEventListener("mouseleave", function () {
+      if (!this.classList.contains("current-pokemon")) {
+        this.style.background = "white";
+        this.style.borderColor = "";
+      }
+    });
+  });
 });
 
 // Add CSS animations via JavaScript
@@ -108,7 +136,7 @@ style.textContent = `
   }
   
   .type-badge {
-    transition: all 0.3s ease;
+    transition: all .03s ease;
   }
 `;
 document.head.appendChild(style);

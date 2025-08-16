@@ -23,6 +23,27 @@
         <span class="type-badge type-{{this.name}}">{{this.name}}</span>
       {{/each}}
     </div>
+
+    <!-- Evolution Chain -->
+    {{#if pokeEvolutions}}
+      <div id="evolutionContainer">
+        <h3>Evolution Chain</h3>
+        <div class="evolution-chain">
+          {{#each pokeEvolutions}}
+            <div class="evolution-stage">
+              <div class="evolution-pokemon {{#if (eq ../pokemon.name this.name)}}current-pokemon{{/if}}">
+                <img src="{{this.sprite}}" alt="{{this.name}}" class="evolution-sprite">
+                <span class="evolution-name">{{this.name}}</span>
+                <span class="evolution-stage-number">Stage {{this.stage}}</span>
+              </div>
+              {{#unless @last}}
+                <div class="evolution-arrow">→</div>
+              {{/unless}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
   </div>
 
   <!-- Data Card with Stats -->

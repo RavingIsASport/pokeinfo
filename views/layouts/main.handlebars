@@ -3,28 +3,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>Poke Info</title>
   </head>
   <body>
-    <!-- Title -->
-    <div id="titleBox">
-      <a id="title" href="/">Poke Info</a>
-    </div>
-    <!-- search container -->
-    <div id="dataSearch">
-      <form id="myForm">
-        <label for="pokemonName"></label>
-        <input
-          type="text"
-          id="pokemonName"
-          results="5"
-          name="pokemonName"
-          placeholder="Search Pokemon..."
-        />
-        <input type="submit" value="Search" id="submit" />
-      </form>
-    </div>
-    {{{body}}}
+    <header class="main-header">
+      <!-- Title -->
+      <div id="titleBox" class="title-container">
+        <a id="title" href="/" class="main-title">
+          <span class="title-icon">⚡</span>
+          Poke Info
+          <span class="title-subtitle">Gotta Know 'Em All!</span>
+        </a>
+      </div>
+      <!-- search container -->
+      <div id="dataSearch" class="search-container">
+        <form id="myForm" class="search-form">
+          <div class="search-input-wrapper">
+            <input
+              type="text"
+              id="pokemonName"
+              results="5"
+              name="pokemonName"
+              placeholder="Search for any Pokémon..."
+              class="search-input"
+            />
+            <button type="submit" id="submit" class="search-button">
+              <span class="search-icon">🔍</span>
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </header>
+
+    <main class="main-content">
+      {{{body}}}
+    </main>
+
+    <footer class="main-footer">
+      <p>Powered by
+        <a href="https://pokeapi.co/" target="_blank">PokéAPI</a></p>
+    </footer>
   </body>
   <script src="/index.js"></script>
 </html>

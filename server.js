@@ -25,6 +25,32 @@ app.set("views", __dirname + "/views");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
+// Helper function to parse evolution chain
+function parseEvolutionChain(chain) {
+  const evolutions = [];
+
+  function addEvolution(evolutionData, stage = 1) {
+    evolutions.push({
+      name: evolutionData.species.name,
+      stage: stage,
+      id: evolutionData.species.url.split("/")[6], // Extract ID from URL
+      sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+        evolutionData.species.url.split("/")[6]
+      }.png`,
+    });
+
+    // Process next evolutions
+    if (evolutionData.evolves_to && evolutionData.evolves_to.length > 0) {
+      evolutionData.evolves_to.forEach((evolution) => {
+        addEvolution(evolution, stage + 1);
+      });
+    }
+  }
+
+  addEvolution(chain);
+  return evolutions;
+}
+
 app.get("/", (req, res) => {
   res.render("home");
 });
@@ -40,6 +66,25 @@ app.get("/:name", async (req, res) => {
       `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`
     );
     const data = await response.json();
+
+    // Fetch evolution data
+    let pokeEvolutions = [];
+    try {
+      // Get species data first
+      const speciesResponse = await fetch(data.species.url);
+      const speciesData = await speciesResponse.json();
+
+      // Get evolution chain
+      if (speciesData.evolution_chain?.url) {
+        const evolutionResponse = await fetch(speciesData.evolution_chain.url);
+        const evolutionData = await evolutionResponse.json();
+
+        // Parse evolution chain
+        pokeEvolutions = parseEvolutionChain(evolutionData.chain);
+      }
+    } catch (evolutionError) {
+      console.log("Evolution data not available:", evolutionError.message);
+    }
 
     // Convert measurements
     const pokeHeight = data.height * 10; // decimeters to cm
@@ -120,6 +165,7 @@ app.get("/:name", async (req, res) => {
       pokeSprites: pokeSprites,
       pokeExperience: data.base_experience,
       pokeMoves: pokeMoves,
+      pokeEvolutions: pokeEvolutions,
     });
   } catch (error) {
     console.error(error);
