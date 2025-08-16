@@ -1,16 +1,107 @@
 <div id="infoCon">
+  <!-- Image Card with Enhanced Features -->
   <div id="imgCard">
-    <img
-      id="pokeImg"
-      src="{{pokemon.sprites.front_default}}"
-      alt="{{pokemon.name}}"
-    />
+    <div id="pokeIdBadge">#{{pokeId}}</div>
+    <div id="imageContainer">
+      <img
+        id="pokeImg"
+        src="{{pokeSprites.official}}"
+        data-default="{{pokeSprites.official}}"
+        data-shiny="{{pokeSprites.shiny}}"
+        alt="{{pokemon.name}}"
+      />
+      <div id="imageControls">
+        <button id="normalBtn" class="img-btn active">Normal</button>
+        <button id="shinyBtn" class="img-btn">Shiny</button>
+      </div>
+    </div>
     <h1 id="pokeName">{{pokemon.name}}</h1>
+    
+    <!-- Types -->
+    <div id="typeContainer">
+      {{#each pokeTypes}}
+        <span class="type-badge type-{{this.name}}">{{this.name}}</span>
+      {{/each}}
+    </div>
   </div>
+
+  <!-- Data Card with Stats -->
   <div id="dataCard">
-    <p>Height: {{pokeH}} cm</p>
-    <p>Weight: {{pokeW}} kg</p>
-    <h2>Abilities</h2>
-    {{#each pokemon.abilities}}<p>{{this.ability.name}}</p>{{/each}}
+    <!-- Basic Info -->
+    <div class="info-section">
+      <h2>Basic Info</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Height</span>
+          <span class="info-value">{{pokeH}} cm</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Weight</span>
+          <span class="info-value">{{pokeW}} kg</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Base EXP</span>
+          <span class="info-value">{{pokeExperience}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="info-section">
+      <h2>Base Stats</h2>
+      <div class="stats-container">
+        {{#each pokeStats}}
+          <div class="stat-item">
+            <div class="stat-info">
+              <span class="stat-name">{{this.name}}</span>
+              <span class="stat-value">{{this.value}}</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: {{calc this.value this.maxValue}}%"></div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- Abilities -->
+    <div class="info-section">
+      <h2>Abilities</h2>
+      <div class="abilities-container">
+        {{#each pokeAbilities}}
+          <span class="ability-badge {{#if this.isHidden}}hidden-ability{{/if}}">
+            {{this.name}}
+            {{#if this.isHidden}}<small>(Hidden)</small>{{/if}}
+          </span>
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- Moves -->
+    <div class="info-section">
+      <h2>Key Moves</h2>
+      <div class="moves-container">
+        {{#each pokeMoves}}
+          <div class="move-item">
+            <div class="move-header">
+              <span class="move-name">{{this.name}}</span>
+              <span class="move-method method-{{this.learnMethod}}">
+                {{#if (eq this.learnMethod 'level-up')}}
+                  Lv. {{this.level}}
+                {{else if (eq this.learnMethod 'machine')}}
+                  TM
+                {{else if (eq this.learnMethod 'tutor')}}
+                  Tutor
+                {{else if (eq this.learnMethod 'egg')}}
+                  Egg
+                {{else}}
+                  Other
+                {{/if}}
+              </span>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
   </div>
 </div>
